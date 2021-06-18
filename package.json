@@ -1,0 +1,15 @@
+{
+  "name": "clean-react-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "A complete Web App with ReactJS, Typescript, Hooks, TDD, Clean Architecture, Design Patterns, SOLID and more.",
+  "repository": "https://github.com/vinisaveg/clean-react-app.git",
+  "scripts": {
+    "test": "echo no test setup found! && exit 1"
+  },
+  "author": "vinisaveg / rmanguinho",
+  "license": "MIT",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.6"
+  }
+}
