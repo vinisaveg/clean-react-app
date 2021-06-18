@@ -5,11 +5,12 @@
   "description": "A complete Web App with ReactJS, Typescript, Hooks, TDD, Clean Architecture, Design Patterns, SOLID and more.",
   "repository": "https://github.com/vinisaveg/clean-react-app.git",
   "scripts": {
-    "test": "echo no test setup found! && exit 1"
+    "test": "jest"
   },
   "author": "vinisaveg / rmanguinho",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.4",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "eslint": "^7.29.0",
@@ -20,7 +21,9 @@
     "eslint-plugin-standard": "^5.0.0",
     "git-commit-msg-linter": "^3.2.6",
     "husky": "^6.0.0",
+    "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.3.4"
   }
 }
