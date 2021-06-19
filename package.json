@@ -5,7 +5,10 @@
   "description": "A complete Web App with ReactJS, Typescript, Hooks, TDD, Clean Architecture, Design Patterns, SOLID and more.",
   "repository": "https://github.com/vinisaveg/clean-react-app.git",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test -- --watch",
+    "test:staged": "yarn test -- --findRelatedTests",
+    "test:ci": "yarn test -- --coverage"
   },
   "author": "vinisaveg / rmanguinho",
   "license": "MIT",
