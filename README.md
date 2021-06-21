@@ -7,6 +7,7 @@ This app was developed with the lessons of *Rodrigo Manguinho* on his Udemy cour
 ### Techs :computer:
 
 - [`Typescript`](https://www.typescriptlang.org)
+- [`axios`](https://axios-http.com)
 
 ### Testing :heavy_check_mark:
 
