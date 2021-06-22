@@ -3,3 +3,7 @@ node_modules
 coverage
 
 public
+
+webpack.config.js
+
+*.scss
