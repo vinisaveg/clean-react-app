@@ -1,1 +1,1 @@
-import * from './mock-axios'
+export * from './mock-axios'
