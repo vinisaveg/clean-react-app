@@ -7,7 +7,7 @@ type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>
 const Input: FunctionComponent<Props> = (props: Props) => {
   return (
     <div className={Styles.inputWrap}>
-      <input {...props} />
+      <input {...props} autoComplete="off" />
       <span className={Styles.status}>🔴</span>
     </div>
   )

@@ -1,28 +1,40 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 
 import Styles from './login-styles.scss'
 
 import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/components/'
 
+import Context from '@/presentation/context/form/form-context'
+
+type StateProps = {
+  isLoading: boolean
+  errorMessage: string
+}
+
 const Login: FunctionComponent = () => {
+  const [state] = useState<StateProps>({ isLoading: false, errorMessage: '' })
+
   return (
     <div className={Styles.login}>
       <LoginHeader />
-      <form className={Styles.form}>
-        <h2>Login</h2>
 
-        <Input name="email" type="email" placeholder="Digite seu e-mail" />
+      <Context.Provider value={state}>
+        <form className={Styles.form}>
+          <h2>Login</h2>
 
-        <Input name="password" type="password" placeholder="Digite sua senha" />
+          <Input name="email" type="email" placeholder="Digite seu e-mail" />
 
-        <button className={Styles.submit} type="submit">
-          Entrar
-        </button>
+          <Input name="password" type="password" placeholder="Digite sua senha" />
 
-        <span className={Styles.link}>Criar uma conta</span>
+          <button className={Styles.submit} type="submit">
+            Entrar
+          </button>
 
-        <FormStatus />
-      </form>
+          <span className={Styles.link}>Criar uma conta</span>
+
+          <FormStatus />
+        </form>
+      </Context.Provider>
 
       <Footer />
     </div>
