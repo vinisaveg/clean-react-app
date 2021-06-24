@@ -7,12 +7,13 @@ import Spinner from '@/presentation/components/spinner/spinner'
 import Context from '@/presentation/context/form/form-context'
 
 const FormStatus: FunctionComponent = () => {
-  const { isLoading, errorMessage } = useContext(Context)
+  const { state, errorState } = useContext(Context)
+  const { isLoading } = state
 
   return (
     <div data-testid="errorWrap" className={Styles.errorWrap}>
       {isLoading && <Spinner className={Styles.spinner} />}
-      {errorMessage && <span className={Styles.error}>{errorMessage}</span>}
+      {errorState.main && <span className={Styles.error}>{errorState.main}</span>}
     </div>
   )
 }
