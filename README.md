@@ -6,7 +6,10 @@ This app was developed with the lessons of *Rodrigo Manguinho* on his Udemy cour
 
 ### Techs :computer:
 
+- [`ReactJS`](https://pt-br.reactjs.org)
 - [`Typescript`](https://www.typescriptlang.org)
+- [`sass`](https://sass-lang.com)
+- [`webpack`](https://webpack.js.org)
 - [`axios`](https://axios-http.com)
 
 ### Testing :heavy_check_mark:
