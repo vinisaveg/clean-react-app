@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 
 import Styles from './login-styles.scss'
+import Spinner from '@/presentation/components/spinner/spinner'
 
 const Login: FunctionComponent = () => {
   return (
@@ -12,10 +13,26 @@ const Login: FunctionComponent = () => {
 
       <form className={Styles.form}>
         <h2>Login</h2>
-        <input name="email" type="email" placeholder="Digite seu e-mail" />
-        <input name="password" type="password" placeholder="Digite sua senha" />
+        <div className={Styles.inputWrap}>
+          <input name="email" type="email" placeholder="Digite seu e-mail" />
+          <span className={Styles.status}>🔴</span>
+        </div>
 
-        <button type="submit">Entrar</button>
+        <div className={Styles.inputWrap}>
+          <input name="password" type="password" placeholder="Digite sua senha" />
+          <span className={Styles.status}>🔴</span>
+        </div>
+
+        <button className={Styles.submit} type="submit">
+          Entrar
+        </button>
+
+        <span className={Styles.link}>Criar uma conta</span>
+
+        <div className={Styles.errorWrap}>
+          <Spinner className={Styles.spinner} />
+          <span className={Styles.error}> Erro</span>
+        </div>
       </form>
 
       <footer className={Styles.footer} />
