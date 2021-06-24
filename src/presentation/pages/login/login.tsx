@@ -26,7 +26,7 @@ const Login: FunctionComponent = () => {
 
           <Input name="password" type="password" placeholder="Digite sua senha" />
 
-          <button className={Styles.submit} type="submit">
+          <button data-testid="submit" className={Styles.submit} type="submit" disabled>
             Entrar
           </button>
 
