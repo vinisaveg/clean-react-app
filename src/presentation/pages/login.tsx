@@ -2,10 +2,10 @@ import React, { FunctionComponent } from 'react'
 
 import Styles from './login-styles.scss'
 
-import Spinner from '@/presentation/components/spinner/spinner'
 import LoginHeader from '@/presentation/components/login-header/login-header'
 import Footer from '@/presentation/components/footer/footer'
 import Input from '@/presentation/components/input/input'
+import Formstatus from '@/presentation/components/form-status/form-status'
 
 const Login: FunctionComponent = () => {
   return (
@@ -24,10 +24,7 @@ const Login: FunctionComponent = () => {
 
         <span className={Styles.link}>Criar uma conta</span>
 
-        <div className={Styles.errorWrap}>
-          <Spinner className={Styles.spinner} />
-          <span className={Styles.error}> Erro</span>
-        </div>
+        <Formstatus />
       </form>
 
       <Footer />
