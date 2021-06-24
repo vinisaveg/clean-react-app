@@ -2,10 +2,7 @@ import React, { FunctionComponent } from 'react'
 
 import Styles from './login-styles.scss'
 
-import LoginHeader from '@/presentation/components/login-header/login-header'
-import Footer from '@/presentation/components/footer/footer'
-import Input from '@/presentation/components/input/input'
-import Formstatus from '@/presentation/components/form-status/form-status'
+import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/components/'
 
 const Login: FunctionComponent = () => {
   return (
@@ -24,7 +21,7 @@ const Login: FunctionComponent = () => {
 
         <span className={Styles.link}>Criar uma conta</span>
 
-        <Formstatus />
+        <FormStatus />
       </form>
 
       <Footer />
