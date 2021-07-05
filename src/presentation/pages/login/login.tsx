@@ -41,7 +41,12 @@ const Login: FunctionComponent<Props> = ({ validation }: Props) => {
 
           <Input name="password" type="password" placeholder="Digite sua senha" />
 
-          <button data-testid="submit" className={Styles.submit} type="submit" disabled>
+          <button
+            data-testid="submit"
+            className={Styles.submit}
+            type="submit"
+            disabled={!!state.emailError || !!state.passwordError}
+          >
             Entrar
           </button>
 
