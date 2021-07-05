@@ -1,6 +1,6 @@
 import React from 'react'
-
 import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
+import faker from 'faker'
 
 import Login from './login'
 import { ValidationSpy } from '@/presentation/test'
@@ -46,10 +46,12 @@ describe('Login component', () => {
 
     const emailInput = sut.getByTestId('email')
 
-    fireEvent.input(emailInput, { target: { value: 'anyEmail' } })
+    const email = faker.internet.email()
+
+    fireEvent.input(emailInput, { target: { value: email } })
 
     expect(validationSpy.fieldName).toBe('email')
-    expect(validationSpy.fieldValue).toBe('anyEmail')
+    expect(validationSpy.fieldValue).toBe(email)
   })
 
   test('Should call Validation with correct password', async () => {
@@ -57,9 +59,11 @@ describe('Login component', () => {
 
     const passwordInput = sut.getByTestId('password')
 
-    fireEvent.input(passwordInput, { target: { value: 'anyPassword' } })
+    const password = faker.internet.password()
+
+    fireEvent.input(passwordInput, { target: { value: password } })
 
     expect(validationSpy.fieldName).toBe('password')
-    expect(validationSpy.fieldValue).toBe('anyPassword')
+    expect(validationSpy.fieldValue).toBe(password)
   })
 })
