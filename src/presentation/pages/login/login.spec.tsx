@@ -4,20 +4,7 @@ import faker from 'faker'
 
 import Login from './login'
 
-import { ValidationStub } from '@/presentation/test'
-import { Authentication, AuthenticationParams } from '@/domain/useCases'
-import { AccountModel } from '@/domain/models'
-import { mockAccountModel } from '@/domain/test'
-
-class AuthenticationSpy implements Authentication {
-  acount = mockAccountModel()
-  params: AuthenticationParams
-
-  async auth(params: AuthenticationParams): Promise<AccountModel> {
-    this.params = params
-    return Promise.resolve(this.acount)
-  }
-}
+import { ValidationStub, AuthenticationSpy } from '@/presentation/test'
 
 type SutTypes = {
   sut: RenderResult
