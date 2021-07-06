@@ -2,7 +2,9 @@
 
 A complete Web App with ReactJS, Typescript, Hooks, TDD, Clean Architecture, Design Patterns, SOLID and more...
 
-This app was developed with the lessons of *Rodrigo Manguinho* on his Udemy course.
+This app was developed with the lessons of _Rodrigo Manguinho_ on his Udemy course.
+
+![Course Logo](./.github/course-logo.png)
 
 ### Techs :computer:
 
