@@ -31,7 +31,14 @@ const Input: FunctionComponent<Props> = (props: Props) => {
 
   return (
     <div className={Styles.inputWrap}>
-      <input {...props} data-testid={props.name} autoComplete="off" onFocus={enableInput} onChange={handleChange} />
+      <input
+        {...props}
+        data-testid={props.name}
+        readOnly
+        autoComplete="off"
+        onFocus={enableInput}
+        onChange={handleChange}
+      />
       <span data-testid={`${props.name}-status`} title={getTitle()} className={Styles.status}>
         {getStatus()}
       </span>
