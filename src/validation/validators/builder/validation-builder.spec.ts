@@ -1,4 +1,4 @@
-import { EmailValidation, RequiredFieldValidation } from '@/validation/validators/'
+import { EmailValidation, RequiredFieldValidation, MinLengthValidation } from '@/validation/validators/'
 import { ValidationBuilder } from '@/validation/validators/builder/validation-builder'
 
 describe('ValidationBuilder', () => {
@@ -12,5 +12,11 @@ describe('ValidationBuilder', () => {
     const validations = ValidationBuilder.field('any_field').email().build()
 
     expect(validations).toEqual([new EmailValidation('any_field')])
+  })
+
+  test('Should return a MinLengthValidation', () => {
+    const validations = ValidationBuilder.field('any_field').min(5).build()
+
+    expect(validations).toEqual([new MinLengthValidation('any_field', 5)])
   })
 })
