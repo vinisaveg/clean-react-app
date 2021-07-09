@@ -10,7 +10,8 @@
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage",
-    "check": "npm-check -u -s"
+    "check": "npm-check -u -s",
+    "lint": "eslint ./src --ext .ts"
   },
   "author": "vinisaveg / rmanguinho",
   "license": "MIT",
