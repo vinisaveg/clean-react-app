@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/vinisaveg/clean-react-app.svg?branch=master)](https://travis-ci.com/vinisaveg/clean-react-app)
+
 ## clean-react-app
 
 A complete Web App with ReactJS, Typescript, Hooks, TDD, Clean Architecture, Design Patterns, SOLID and more...
