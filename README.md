@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/vinisaveg/clean-react-app.svg?branch=master)](https://travis-ci.com/vinisaveg/clean-react-app)
+[![Coverage Status](https://coveralls.io/repos/github/vinisaveg/clean-react-app/badge.svg?branch=master)](https://coveralls.io/github/vinisaveg/clean-react-app?branch=master)
 
 ## clean-react-app
 
