@@ -40,4 +40,20 @@ This app was developed with the lessons of _Rodrigo Manguinho_ on his Udemy cour
 
 ```
 
+### Running the App :running:
+
+```
+
+    yarn start
+
+```
+
+### Running the tests :rotating_light:
+
+```
+
+    yarn test
+
+```
+
 Happy Coding! :smile:
