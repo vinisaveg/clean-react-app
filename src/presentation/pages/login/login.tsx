@@ -6,14 +6,15 @@ import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/component
 
 import Context from '@/presentation/context/form/form-context'
 import { Validation } from '../protocols/validation'
-import { Authentication } from '@/domain/useCases'
+import { Authentication, SaveAccessToken } from '@/domain/useCases'
 
 type Props = {
   validation: Validation
   authentication: Authentication
+  saveAccessToken: SaveAccessToken
 }
 
-const Login: FunctionComponent<Props> = ({ validation, authentication }: Props) => {
+const Login: FunctionComponent<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -42,7 +43,7 @@ const Login: FunctionComponent<Props> = ({ validation, authentication }: Props) 
 
       const account = await authentication.auth({ email: state.email, password: state.password })
 
-      localStorage.setItem('accessToken', account.accessToken)
+      await saveAccessToken.save(account.accessToken)
 
       history.replace('/')
     } catch (error) {
