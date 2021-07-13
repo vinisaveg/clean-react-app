@@ -31,4 +31,16 @@ describe('AddAccount', () => {
 
     expect(httpPostClientSpy.url).toBe(url)
   })
+
+  test('Should call HttpPostClient with correct body', async () => {
+    const url = faker.internet.url()
+
+    const { sut, httpPostClientSpy } = makeSut(url)
+
+    const addAccountParams = mockAddAccountParams()
+
+    await sut.add(addAccountParams)
+
+    expect(httpPostClientSpy.body).toEqual(addAccountParams)
+  })
 })
