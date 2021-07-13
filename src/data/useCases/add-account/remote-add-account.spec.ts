@@ -3,6 +3,8 @@ import { HttpPostClientSpy } from '@/data/test'
 import { AccountModel } from '@/domain/models'
 import { AddAccountParams } from '@/domain/useCases'
 import { mockAddAccountParams } from '@/domain/test'
+import { HttpStatusCode } from '@/data/protocols/http'
+import { EmailInUseError } from '@/domain/errors'
 
 import faker from 'faker'
 
@@ -33,14 +35,24 @@ describe('AddAccount', () => {
   })
 
   test('Should call HttpPostClient with correct body', async () => {
-    const url = faker.internet.url()
-
-    const { sut, httpPostClientSpy } = makeSut(url)
+    const { sut, httpPostClientSpy } = makeSut()
 
     const addAccountParams = mockAddAccountParams()
 
     await sut.add(addAccountParams)
 
     expect(httpPostClientSpy.body).toEqual(addAccountParams)
+  })
+
+  test('Should throw EmailInUseError if HttpPostClient returns 403', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.forbidden
+    }
+
+    const promise = sut.add(mockAddAccountParams())
+
+    expect(promise).rejects.toThrow(new EmailInUseError())
   })
 })
