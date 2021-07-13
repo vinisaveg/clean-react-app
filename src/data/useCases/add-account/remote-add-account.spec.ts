@@ -4,7 +4,7 @@ import { AccountModel } from '@/domain/models'
 import { AddAccountParams } from '@/domain/useCases'
 import { mockAddAccountParams } from '@/domain/test'
 import { HttpStatusCode } from '@/data/protocols/http'
-import { EmailInUseError } from '@/domain/errors'
+import { EmailInUseError, UnexpectedError } from '@/domain/errors'
 
 import faker from 'faker'
 
@@ -54,5 +54,17 @@ describe('AddAccount', () => {
     const promise = sut.add(mockAddAccountParams())
 
     expect(promise).rejects.toThrow(new EmailInUseError())
+  })
+
+  test('Should throw UnexpectedError if HttpPostClient return 400', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.badRequest
+    }
+
+    const promise = sut.add(mockAddAccountParams())
+
+    await expect(promise).rejects.toThrow(new UnexpectedError())
   })
 })
