@@ -13,8 +13,9 @@ const SignUp: FunctionComponent<Props> = ({ validation }: Props) => {
   const [state, setState] = useState({
     isLoading: false,
     name: '',
+    email: '',
     nameError: '',
-    emailError: 'Campo obrigatorio',
+    emailError: '',
     passwordError: 'Campo obrigatorio',
     passwordConfirmationError: 'Campo obrigatorio',
     mainError: ''
@@ -23,9 +24,10 @@ const SignUp: FunctionComponent<Props> = ({ validation }: Props) => {
   useEffect(() => {
     setState({
       ...state,
-      nameError: validation.validate('name', state.name)
+      nameError: validation.validate('name', state.name),
+      emailError: validation.validate('email', state.email)
     })
-  }, [state.name])
+  }, [state.name, state.email])
 
   return (
     <div className={Styles.signup}>
