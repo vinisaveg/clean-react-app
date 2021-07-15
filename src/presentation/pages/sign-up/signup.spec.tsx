@@ -6,7 +6,7 @@ import { createMemoryHistory } from 'history'
 
 import { Helper, ValidationStub, AddAccountSpy, SaveAccessTokenMock } from '@/presentation/test'
 import SignUp from './signup'
-import { EmailInUseError } from '@/domain/errors'
+import { EmailInUseError, InvalidCredentialsError } from '@/domain/errors'
 
 type SutTypes = {
   sut: RenderResult
@@ -201,5 +201,17 @@ describe('Signup component', () => {
     expect(saveAccessTokenMock.accessToken).toBe(addAccountSpy.account.accessToken)
     expect(history.length).toBe(1)
     expect(history.location.pathname).toBe('/')
+  })
+
+  test('Should present error if SaveAccessToken fails', async () => {
+    const { sut, saveAccessTokenMock } = makeSut()
+
+    const error = new InvalidCredentialsError()
+
+    jest.spyOn(saveAccessTokenMock, 'save').mockRejectedValueOnce(error)
+
+    await simulateValidSubmit(sut)
+    Helper.testChildCount(sut, 'errorWrap', 1)
+    Helper.testElementText(sut, 'main-error', error.message)
   })
 })
