@@ -49,7 +49,14 @@ const SignUp: FunctionComponent<Props> = ({ validation }: Props) => {
 
           <Input name="passwordConfirmation" type="password" placeholder="Confirme sua senha" />
 
-          <button data-testid="submit" className={Styles.submit} type="submit" disabled>
+          <button
+            data-testid="submit"
+            className={Styles.submit}
+            type="submit"
+            disabled={
+              !!state.nameError || !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError
+            }
+          >
             Criar conta
           </button>
 
