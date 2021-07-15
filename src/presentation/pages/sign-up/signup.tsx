@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react'
-import { Link } from 'react-router-dom'
+import React, { FunctionComponent, useState } from 'react'
+
 import Styles from './signup-styles.scss'
 
 import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/components/'
@@ -7,11 +7,19 @@ import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/component
 import Context from '@/presentation/context/form/form-context'
 
 const SignUp: FunctionComponent = () => {
+  const [state] = useState({
+    isLoading: false,
+    nameError: 'Campo obrigatorio',
+    emailError: 'Campo obrigatorio',
+    passwordError: 'Campo obrigatorio',
+    passwordConfirmationError: 'Campo obrigatorio',
+    mainError: ''
+  })
   return (
     <div className={Styles.signup}>
       <LoginHeader />
 
-      <Context.Provider value={{ state: {} }}>
+      <Context.Provider value={{ state }}>
         <form className={Styles.form}>
           <h2>Cadastro</h2>
 
@@ -23,13 +31,11 @@ const SignUp: FunctionComponent = () => {
 
           <Input name="passwordConfirmation" type="password" placeholder="Confirme sua senha" />
 
-          <button className={Styles.submit} type="submit">
+          <button data-testid="submit" className={Styles.submit} type="submit" disabled>
             Criar conta
           </button>
 
-          <Link to="/login" className={Styles.link}>
-            Ja possui uma conta?
-          </Link>
+          <span className={Styles.link}>Ja possui uma conta?</span>
 
           <FormStatus />
         </form>
