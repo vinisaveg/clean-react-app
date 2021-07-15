@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import Styles from './signup-styles.scss'
 import { LoginHeader, Input, FormStatus, Footer } from '@/presentation/components/'
@@ -95,7 +95,9 @@ const SignUp: FunctionComponent<Props> = ({ validation, addAccount, saveAccessTo
             Criar conta
           </button>
 
-          <span className={Styles.link}>Ja possui uma conta?</span>
+          <Link replace to="/login" data-testid="login" className={Styles.link}>
+            Ja possui uma conta?
+          </Link>
 
           <FormStatus />
         </form>
