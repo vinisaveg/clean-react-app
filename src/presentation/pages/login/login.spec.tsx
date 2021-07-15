@@ -157,7 +157,7 @@ describe('Login component', () => {
 
     await simulateValidSubmit(sut)
     Helper.testChildCount(sut, 'errorWrap', 1)
-    testElementText(sut, 'main-error', error.message)
+    Helper.testElementText(sut, 'main-error', error.message)
   })
 
   test('Should call SaveAccessToken on success', async () => {
@@ -179,7 +179,7 @@ describe('Login component', () => {
 
     await simulateValidSubmit(sut)
     Helper.testChildCount(sut, 'errorWrap', 1)
-    testElementText(sut, 'main-error', error.message)
+    Helper.testElementText(sut, 'main-error', error.message)
   })
 
   test('Should go to signup page', async () => {
