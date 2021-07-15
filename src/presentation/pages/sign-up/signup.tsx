@@ -48,14 +48,18 @@ const SignUp: FunctionComponent<Props> = ({ validation, addAccount }: Props) => 
       return
     }
 
-    setState({ ...state, isLoading: true })
+    try {
+      setState({ ...state, isLoading: true })
 
-    await addAccount.add({
-      name: state.name,
-      email: state.email,
-      password: state.password,
-      passwordConfirmation: state.passwordConfirmation
-    })
+      await addAccount.add({
+        name: state.name,
+        email: state.email,
+        password: state.password,
+        passwordConfirmation: state.passwordConfirmation
+      })
+    } catch (error) {
+      setState({ ...state, isLoading: false, mainError: error.message })
+    }
   }
 
   return (
