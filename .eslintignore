@@ -7,3 +7,5 @@ public
 webpack.config.js
 
 *.scss
+
+*.json
