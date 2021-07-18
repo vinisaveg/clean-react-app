@@ -4,11 +4,14 @@
       "version": "detect"
     }
   },
-    "extends":  ["standard-with-typescript", "plugin:react/recommended"],
+    "extends":  ["standard-with-typescript", "plugin:react/recommended", "plugin:cypress/recommended"],
     "parserOptions": {
       "project": "./tsconfig.json"
     },
-    "plugins": ["react"],
+    "env": {
+      "cypress/globals": true
+    },
+    "plugins": ["react", "cypress"],
     "rules": {
       "prettier/prettier": "off",
       "no-redeclare": "off",
