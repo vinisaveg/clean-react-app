@@ -184,4 +184,14 @@ describe('Signup', () => {
 
     cy.get('@request.all').should('have.length', 1)
   })
+
+  it('Should not call submit if form is invalid', () => {
+    cy.intercept('POST', /signup/, {
+      statusCode: 200
+    }).as('request')
+
+    cy.getByTestId('name').focus().type(faker.name.findName()).type('{enter}')
+
+    cy.get('@request.all').should('have.length', 0)
+  })
 })
