@@ -141,4 +141,29 @@ describe('Signup', () => {
 
     cy.url().should('eq', `${baseUrl}/signup`)
   })
+
+  it('Should present save accessToken if valid credentials are provided', () => {
+    cy.intercept('POST', /signup/, {
+      statusCode: 200,
+      body: {
+        accessToken: faker.datatype.uuid()
+      }
+    })
+
+    cy.getByTestId('name').focus().type(faker.name.findName())
+    cy.getByTestId('email').focus().type(faker.internet.email())
+
+    const password = faker.random.alphaNumeric(10)
+
+    cy.getByTestId('password').focus().type(password)
+    cy.getByTestId('passwordConfirmation').focus().type(password).type('{enter}') // use instead of cy.getByTestId('submit').click()
+
+    cy.getByTestId('errorWrap').should('not.exist')
+    cy.getByTestId('spinner').should('not.exist')
+
+    cy.url().should('eq', `${baseUrl}/`)
+    cy.window()
+      .then((window) => assert.isOk(window.localStorage.getItem('accessToken')))
+      .end()
+  })
 })
