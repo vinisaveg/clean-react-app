@@ -1,5 +1,7 @@
 import faker from 'faker'
 
+const baseUrl: string = Cypress.config().baseUrl
+
 describe('Signup', () => {
   beforeEach(() => {
     cy.visit('signup')
@@ -62,5 +64,29 @@ describe('Signup', () => {
 
     cy.getByTestId('submit').should('not.have.attr', 'disabled')
     cy.getByTestId('errorWrap').should('not.have.descendants')
+  })
+
+  it('Should present EmailInUseError on 403', () => {
+    cy.intercept('POST', /signup/, {
+      statusCode: 403,
+      body: {
+        error: faker.random.words()
+      }
+    })
+
+    cy.getByTestId('name').focus().type(faker.name.findName())
+    cy.getByTestId('email').focus().type(faker.internet.email())
+
+    const password = faker.random.alphaNumeric(10)
+
+    cy.getByTestId('password').focus().type(password)
+    cy.getByTestId('passwordConfirmation').focus().type(password)
+
+    cy.getByTestId('submit').click()
+
+    cy.getByTestId('spinner').should('not.exist')
+    cy.getByTestId('main-error').should('exist').should('have.text', 'Esse e-mail ja esta em uso')
+
+    cy.url().should('eq', `${baseUrl}/signup`)
   })
 })
