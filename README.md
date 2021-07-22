@@ -21,6 +21,7 @@ This app was developed with the lessons of _Rodrigo Manguinho_ on his Udemy cour
 
 - [`Jest`](https://jestjs.io)
 - [`ts-jest`](https://kulshekhar.github.io/ts-jest/)
+- [`cypress`](https://www.cypress.io/)
 
 ### Installing :construction_worker:
 
@@ -50,9 +51,19 @@ This app was developed with the lessons of _Rodrigo Manguinho_ on his Udemy cour
 
 ### Running the tests :rotating_light:
 
+- Unit tests
+
 ```
 
     yarn test
+
+```
+
+- Integration tests
+
+```
+
+    yarn test:cypress
 
 ```
 
