@@ -166,4 +166,22 @@ describe('Signup', () => {
       .then((window) => assert.isOk(window.localStorage.getItem('accessToken')))
       .end()
   })
+
+  it('Should prevent multiple submits', () => {
+    cy.intercept('POST', /signup/, {
+      statusCode: 200
+    }).as('request')
+
+    cy.getByTestId('name').focus().type(faker.name.findName())
+    cy.getByTestId('email').focus().type(faker.internet.email())
+
+    const password = faker.random.alphaNumeric(10)
+
+    cy.getByTestId('password').focus().type(password)
+    cy.getByTestId('passwordConfirmation').focus().type(password)
+
+    cy.getByTestId('submit').dblclick()
+
+    cy.get('@request.all').should('have.length', 1)
+  })
 })
