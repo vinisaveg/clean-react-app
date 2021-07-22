@@ -42,4 +42,25 @@ describe('Signup', () => {
     cy.getByTestId('submit').should('have.attr', 'disabled')
     cy.getByTestId('errorWrap').should('not.have.descendants')
   })
+
+  it('Should present valid state if form is valid', () => {
+    cy.getByTestId('name').focus().type(faker.name.findName())
+    cy.getByTestId('name-status').should('have.attr', 'title', 'Tudo certo!').should('contain.text', '🟢')
+
+    cy.getByTestId('email').focus().type(faker.internet.email())
+    cy.getByTestId('email-status').should('have.attr', 'title', 'Tudo certo!').should('contain.text', '🟢')
+
+    const password = faker.random.alphaNumeric(6)
+
+    cy.getByTestId('password').focus().type(password)
+    cy.getByTestId('password-status').should('have.attr', 'title', 'Tudo certo!').should('contain.text', '🟢')
+
+    cy.getByTestId('passwordConfirmation').focus().type(password)
+    cy.getByTestId('passwordConfirmation-status')
+      .should('have.attr', 'title', 'Tudo certo!')
+      .should('contain.text', '🟢')
+
+    cy.getByTestId('submit').should('not.have.attr', 'disabled')
+    cy.getByTestId('errorWrap').should('not.have.descendants')
+  })
 })
