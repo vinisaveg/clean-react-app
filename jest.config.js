@@ -3,6 +3,7 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,tsx}',
     '!<rootDir>/src/main/**/*',
+    '!<rootDir>/src/**/index.ts',
     '!**/*.d.ts'
   ],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/main/test/cypress'],
