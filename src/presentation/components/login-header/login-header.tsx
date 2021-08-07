@@ -6,7 +6,7 @@ import Logo from '../logo/logo'
 
 const LoginHeader: FunctionComponent = () => {
   return (
-    <header className={Styles.header}>
+    <header className={Styles.headerWrap}>
       <Logo />
       <h1>4Dev - Enquetes para programadores</h1>
     </header>
