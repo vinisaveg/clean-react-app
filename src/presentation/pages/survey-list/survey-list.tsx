@@ -63,6 +63,8 @@ const SurveyList: FunctionComponent = () => {
             </div>
             <footer>Ver resultado</footer>
           </li>
+
+          <li></li>
         </ul>
       </div>
       <Footer />
