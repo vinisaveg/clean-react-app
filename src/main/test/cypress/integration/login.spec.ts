@@ -117,7 +117,7 @@ describe('Login', () => {
 
     cy.url().should('eq', `${baseUrl}/`)
     cy.window()
-      .then((window) => assert.isOk(window.localStorage.getItem('accessToken')))
+      .then((window) => assert.isOk(window.localStorage.getItem('account')))
       .end()
   })
 

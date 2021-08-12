@@ -146,7 +146,8 @@ describe('Signup', () => {
     cy.intercept('POST', /signup/, {
       statusCode: 200,
       body: {
-        accessToken: faker.datatype.uuid()
+        accessToken: faker.datatype.uuid(),
+        name: faker.name.findName()
       }
     })
 
@@ -163,7 +164,7 @@ describe('Signup', () => {
 
     cy.url().should('eq', `${baseUrl}/`)
     cy.window()
-      .then((window) => assert.isOk(window.localStorage.getItem('accessToken')))
+      .then((window) => assert.isOk(window.localStorage.getItem('account')))
       .end()
   })
 

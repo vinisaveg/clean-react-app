@@ -6,15 +6,15 @@ import { LoginHeader, Input, FormStatus, Footer, SubmitButton } from '@/presenta
 
 import Context from '@/presentation/context/form/form-context'
 import { Validation } from '../protocols/validation'
-import { Authentication, SaveAccessToken } from '@/domain/useCases'
+import { Authentication, UpdateCurrentAccount } from '@/domain/useCases'
 
 type Props = {
   validation: Validation
   authentication: Authentication
-  saveAccessToken: SaveAccessToken
+  updateCurrentAccount: UpdateCurrentAccount
 }
 
-const Login: FunctionComponent<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
+const Login: FunctionComponent<Props> = ({ validation, authentication, updateCurrentAccount }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -51,7 +51,7 @@ const Login: FunctionComponent<Props> = ({ validation, authentication, saveAcces
 
       const account = await authentication.auth({ email: state.email, password: state.password })
 
-      await saveAccessToken.save(account.accessToken)
+      await updateCurrentAccount.save(account)
 
       history.replace('/')
     } catch (error) {
