@@ -1,20 +1,20 @@
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { FunctionComponent, useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Styles from './login-styles.scss'
 
 import { LoginHeader, Input, FormStatus, Footer, SubmitButton } from '@/presentation/components/'
 
-import Context from '@/presentation/context/form/form-context'
+import { FormContext, ApiContext } from '@/presentation/context'
 import { Validation } from '../protocols/validation'
-import { Authentication, UpdateCurrentAccount } from '@/domain/useCases'
+import { Authentication } from '@/domain/useCases'
 
 type Props = {
   validation: Validation
   authentication: Authentication
-  updateCurrentAccount: UpdateCurrentAccount
 }
 
-const Login: FunctionComponent<Props> = ({ validation, authentication, updateCurrentAccount }: Props) => {
+const Login: FunctionComponent<Props> = ({ validation, authentication }: Props) => {
+  const { setCurrentAccount } = useContext(ApiContext)
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -51,7 +51,7 @@ const Login: FunctionComponent<Props> = ({ validation, authentication, updateCur
 
       const account = await authentication.auth({ email: state.email, password: state.password })
 
-      await updateCurrentAccount.save(account)
+      setCurrentAccount(account)
 
       history.replace('/')
     } catch (error) {
@@ -63,7 +63,7 @@ const Login: FunctionComponent<Props> = ({ validation, authentication, updateCur
     <div className={Styles.login}>
       <LoginHeader />
 
-      <Context.Provider value={{ state, setState }}>
+      <FormContext.Provider value={{ state, setState }}>
         <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
           <h2>Login</h2>
 
@@ -79,7 +79,7 @@ const Login: FunctionComponent<Props> = ({ validation, authentication, updateCur
 
           <FormStatus />
         </form>
-      </Context.Provider>
+      </FormContext.Provider>
 
       <Footer />
     </div>
